@@ -1,16 +1,59 @@
-// const chalk = require('chalk')
-// const validator = require('validator')
-// const getNotes = require('./notes.js')
+import notes from './notes.js';
 
-// const msg = getNotes()
-// console.log(msg)
+import yargs2 from 'yargs'
+import { hideBin } from 'yargs/helpers'
+const yargs = yargs2(hideBin(process.argv))
 
-// import chalk from 'chalk'
+yargs.command({
+  command: 'add',
+  describe: 'Add a new note',
+  builder: {
+      title: {
+          describe: 'Note title',
+          demandOption: true,
+          type: 'string'
+      },
+      body: {
+          describe: 'Note body',
+          demandOption: true,
+          type: 'string'
+      }
+  },
+  handler(argv) {
+      notes.addNote(argv.title, argv.body)
+  }
+})
 
-// console.log(chalk.blue('Hello world!'))
-// console.log(validator.isEmail("ajdas112@gmail.com"))
+yargs.command({
+  command: 'remove',
+  describe: 'Remove a note',
+  builder: {
+    title: {
+        describe: 'Note title',
+        demandOption: true,
+        type: 'string'
+    }
+},
+  handler(argv) {
+      notes.removeNote(argv.title)
+  }
+})
 
+yargs.command({
+  command: 'list',
+  describe: 'List your notes',
+  handler() {
+      notes.listNotes()
+  }
+})
 
-import chalk from 'chalk';
+yargs.command({
+  command: 'read',
+  describe: 'Read a note',
+  handler(argv) {
+      notes.readNote(argv.title)
+  }
+})
 
-console.log(chalk.blue('Hello world!'));
+yargs.parse()
+  
