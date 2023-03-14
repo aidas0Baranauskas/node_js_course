@@ -2,8 +2,6 @@
 // 476526981ff5b9046874173c96ec8389
 // http://api.weatherstack.com/current/
 // http://api.weatherstack.com/current?access_key=476526981ff5b9046874173c96ec8389&query=37.8267,-122.4233
-// http://api.weatherstack.com/current?access_key=476526981ff5b9046874173c96ec8389&query=37.8267,-122.4233&units=f
-
 import chalk from 'chalk'
 import geocode from './utils/geocode.js'
 import forecast from './utils/forecast.js'
